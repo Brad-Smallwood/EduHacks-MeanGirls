@@ -1,30 +1,25 @@
+#Author: Kristen Bystrom
+#Purpose: To provide an interface for schools to implement a walking school bus program
 
-# This is the user-interface definition of a Shiny web application.
-# You can find out more about building applications with Shiny here:
-#
-# http://shiny.rstudio.com
-#
+
+#To-do
+#1. Add padding  tags$style(type="text/css", "body {padding-top: 70px;}")
 
 library(shiny)
 
-shinyUI(fluidPage(
+shinyUI(
 
-  # Application title
-  titlePanel("Old Faithful Geyser Data"),
-
-  # Sidebar with a slider input for number of bins
-  sidebarLayout(
-    sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
-    ),
-
-    # Show a plot of the generated distribution
-    mainPanel(
-      plotOutput("distPlot")
-    )
-  )
-))
+  navbarPage(title = "Walking School Bus", id = "main",
+             position = "fixed-top", header = "This is the header text",
+             footer = "This is the footer text", inverse = TRUE, collapsible = TRUE,
+             fluid = TRUE, theme = NULL, windowTitle = "The Magic School Bus", 
+             tabPanel("Home"),
+             tabPanel("About"),
+             tabPanel("Register"),
+             navbarMenu("Route Info",
+                        tabPanel("View Your Route"),
+                        tabPanel("Walking Bus Driver Schedule"),
+                        tabPanel("Route Number Directory")
+             ),
+             tabPanel("Contact Us"))
+)
