@@ -11,7 +11,8 @@ library(RCurl)
 library(RJSONIO)
 library(tidyverse)
 
-# Writing function which gets lattitude and longitude information:
+# Reading in data set
+eg_data <- read_csv("~/EduHacks-MeanGirls/Master.csv")
 
 # Address Function
 url <- function(address, return.call = "json", sensor = "false") {
@@ -36,9 +37,6 @@ geoCode <- function(address, city,verbose=FALSE) {
     return(c(NA,NA,NA, NA))
   }
 }
-
-# Reading in data set
-eg_data <- read_csv("~/EduHacks-MeanGirls/Master.csv")
 
 # Getting lattitude and longitudinal data
 geo_updated <- function(data){
@@ -119,7 +117,6 @@ registration$child3 <- NA
 registration <- as.data.frame(registration)
 
 new_reg_appender <- function(newData){
-  
   newData <- geo_updated(newData)
   updated_eg_data <- rbind(updated_eg_data, newData)
 }
