@@ -38,7 +38,7 @@ geoCode <- function(address, city,verbose=FALSE) {
 }
 
 # Reading in data set
-eg_data <- read.csv("Book2.csv", as.is = T, header = T)
+eg_data <- read_csv("~/EduHacks-MeanGirls/Master.csv")
 
 # Getting lattitude and longitudinal data
 geo_updated <- function(data){
@@ -57,16 +57,6 @@ geo_updated <- function(data){
   data$lattitude <- parse_double(data$lattitude)
   data$longitude <- parse_double(data$longitude)
   return(data)
-
-  
-  family_geo_info <- cbind(data, lattitude, longitude)
-  colnames(family_geo_info) <- c("family", "address", "city", "school", "lattitude",
-                                 "longitude")
-  
-  family_geo_info$lattitude <- parse_double(family_geo_info$lattitude)
-  family_geo_info$longitude <- parse_double(family_geo_info$longitude)
-
-  return(family_geo_info)
   
 }
 
