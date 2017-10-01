@@ -22,8 +22,7 @@ url <- function(address, return.call = "json", sensor = "false") {
 
 # Using google's API
 geoCode <- function(address, city,verbose=FALSE) {
-  if(verbose) cat(address,"\n")
-  u <- paste("https://maps.googleapis.com/maps/api/geocode/json?address=", gsub(" ", address, replacement = "+"), ",+",city,"&key=AIzaSyCN4Z3Y0aArSROT47NXzgdilyOPc2pXiKI")
+  u <- paste("https://maps.googleapis.com/maps/api/geocode/json?address=", gsub(" ", address, replacement = "+"), ",+",city,"&key=AIzaSyCN4Z3Y0aArSROT47NXzgdilyOPc2pXiKI", sep = "")
   doc <- getURL(u)
   x <- fromJSON(doc,simplify = FALSE)
   if(x$status=="OK") {
@@ -114,7 +113,7 @@ colnames(bothwell_elementary)
 fraserwood_elementary
 
 ######## New Registrant Function #########
-<<<<<<< HEAD
+
 registration<- NULL
 registration$X1 <- 61 #length(family_list$X1) + 1
 registration$family <- "Buckle" #input$pLastName
@@ -130,7 +129,7 @@ registration$child1 <- "Jimbob"
 registration$child2 <- "Stacey"
 registration$child3 <- NA
 registration <- as.data.frame(registration)
-=======
+
 new_obs <- NULL
 new_obs$X <- 61
 new_obs$family <- "who_cares"
@@ -140,8 +139,7 @@ new_obs$school <- "Maple Green Elementary School"
 new_obs <- as.data.frame(new_obs)
 new_obs
 
-maplegreen_elementary
->>>>>>> d3f47f5f656565c1494ab1ebdc8bf0c532bec5e6
+
 
 new_reg_appender <- function(newData){
   
@@ -165,7 +163,4 @@ new_reg_appender <- function(newData){
 }
 
 
-
 new_reg_appender(new_obs)
-
-bothwell_elementary
