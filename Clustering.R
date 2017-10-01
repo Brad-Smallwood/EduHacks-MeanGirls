@@ -1,9 +1,4 @@
 
-
-
-install.packages("RJSONIO")
-
-
 library(ggplot2)
 library(RCurl)
 library(RJSONIO)
@@ -75,20 +70,12 @@ View(pathSplit.out)
 plot1 <- ggplot(pathSplit.out, aes(x = lattitude, y = longitude, color = Cluster)) + 
   geom_point() +
   labs(title = "Walk Clusters\n") +
-  scale_color_manual(labels = c("Cluster 1", "Cluster 2"), values = c("blue", "red")) +
+  scale_color_manual(labels = c("Cluster 1", "Cluster 2", "Cluser 3", "Cluster 4"), values = c("blue", "red", "green", "purple")) +
   ggtitle("Walking Clusters Example") + 
   theme(plot.title = element_text(hjust = 0.5)) +
-  ggsave("cluster_example_k1.png")
+  ggsave("walking_clusters_eg2.png")
 
 plot1
-
-plot(bothwell_elementary, col = (pathSplit.out$Cluster + 1), main = "K-Means Clustering Results with K = 2", pch = 20, cex = 2)
-# Distance Calcualation Function
-
-
-distanceCalc(df){
-  
-}
 
 # Bothwell Location
 # 17070 102 Ave, Surrey, BC V4N 4N6
@@ -140,7 +127,9 @@ opt_func <- function(df, maxD, maxSize, firstRun){
   }
 }
 
-optim.df <- opt_func(bothwell_elementary, 1, 15)
+optim.df <- opt_func2(bothwell_elementary, 1, 15)
+
+
 
 fakeData = pathSplit.out
 fakeDist = runif(60, 1, 3000)
@@ -148,3 +137,69 @@ fakeData = cbind(fakeData, fakeDist)
 View(fakeData)
 
 write.csv(fakeData, "fakeData.csv")
+
+
+
+opt_func2 <- function(df, maxD, firstRun){
+  
+  # Initialize
+  if(firstRun == TRUE){
+    if (nrow(df) <= 11){
+      k = 1
+      # Change data strings to be readable by Matt's functions
+      for (i in 1:ncol(df)){
+      df[, i] <- gsub(" ", df[,i], replacement = "+") }
+      location <- NULL
+      for(i in 1:nrow(df)){
+        location[i] = paste0(df$address,"+", df$city, "BC")
+      }} else{
+      k = floor(nrow(df)/12)
+      # Change data strings to be readable by Matt's functions
+      for (i in 1:ncol(df)){
+        df[, i] <- gsub(" ", df[,i], replacement = "+") }
+      location <- NULL
+      for(i in 1:nrow(df)){
+        location[i] = paste0(df$address,"+", df$city, "BC")
+      }
+      df2 <- cbind(df, location)
+      }
+    }
+  # Base call to callAPI()
+  # Arg1 = first address, Arg2 = second address
+  
+  testSplit = pathSplit(df2, k)
+  busPath = NULL
+  
+  for (i in 1:length(unique(testSplit$Cluster))){
+    
+    temp <- testSplit %>% filter(Cluster == i)
+    if(nrow(temp) <= 1){
+      return()  
+    }
+    holder = callAPI(temp[1,7], temp[2,7])
+    holder2 = holder[[2]]
+    for(j in 3:nrow(df2)){
+      holder2 = callAPI(holder2, df2[j,7])[[2]]
+    }
+    
+    busPath[i] = bestPath(holder2, "Bothwell+Elementary+School+Surrey,BC", "17070 102 Ave")
+  }
+  
+  #Test to see how big df is.  K-mean again if too big
+  for (i in 1:length(unique(testSplit$Cluster))){
+    if(busPath[i][[1]] >= maxD){
+      k = k + 1
+      testSplit = pathSplit(df, k)
+      opt_func(testSplit, maxD, FALSE)
+    } else{ # Not too big.  Split based off of number of clusters
+        return(as.list(testSplit, busPath, k))
+        }
+    
+  }
+}
+
+opt_func2(bothwell_elementary, 1500, TRUE)
+
+
+
+nrow(bothwell_elementary)
