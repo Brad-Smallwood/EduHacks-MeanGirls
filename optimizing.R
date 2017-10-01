@@ -63,8 +63,6 @@ geo_updated <- function(data){
 # Running lattitude/longitude function
 updated_eg_data <- geo_updated(eg_data)
 
-updated_eg_data$province <- "B.C"
-
 # Filtering by city function
 filter_1 <- function(school_name, ds){
   
