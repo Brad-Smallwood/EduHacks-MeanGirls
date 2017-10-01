@@ -7,9 +7,11 @@
 
 library(shiny)
 library(plotGoogleMaps)
+library(readr)
 
-data(meuse)
-coordinates(meuse)<-~x+y
+meuse = read_csv("~/GitHub/EduHacks-MeanGirls/Master.csv")
+coordinates(meuse)<-~lattitude+longitude
+meuse # Now a coordinate structure
 proj4string(meuse) <- CRS('+init=epsg:28992')
 
 function(input, output, session) {
