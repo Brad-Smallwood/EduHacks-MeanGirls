@@ -116,11 +116,10 @@ registration$fakeDist <- NA
 registration
 
 new_reg_appender <- function(newData){
-  
   newData <- geo_updated(newData)
   updated_eg_data <- rbind(updated_eg_data, newData)
 }
 
 new_reg_appender(registration)
 
-bothwell_elementary
+updated_eg_data
