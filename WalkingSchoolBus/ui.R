@@ -14,16 +14,16 @@ shinyUI(
              inverse = TRUE, collapsible = TRUE,
              fluid = TRUE, theme = NULL, windowTitle = "The Magic School Bus", 
              tabPanel("Home",
-                      titlePanel(h1("News")),
+                      titlePanel(h1("Real Fake News")),
                                
                      tabsetPanel(
-                       tabPanel(h4("Dat School Bus Decreases Obesity Rates in Local Surrey School"), 
+                       tabPanel(h6("Dat School Bus Decreases Obesity Rates in Local Surrey School"), 
                                 img(src='schoolBusWalk.jpg', align = "left"),
                                 h3("Some news article about obesity")),
-                       tabPanel(h4("BC Government Partners with Dat School Bus"), 
+                       tabPanel(h6("BC Government Partners with Dat School Bus"), 
                                 img(src='johnHorgan.jpg', align = "left"),
                                 h3("Some news article about John Horgan")),
-                       tabPanel(h4("Dat School Bus Now Implemented in 10 School Districts"), 
+                       tabPanel(h6("Dat School Bus Now Implemented in 10 School Districts"), 
                                 img(src='schoolBusSign.jpg', align = "left"),
                                 h3("Some news article about growth"))
                      )
@@ -42,7 +42,8 @@ shinyUI(
                         column(6, 
                           textInput("s1Name", label = h3("Name of First Child"), value = "Enter your child's name"),
                           textInput("s2Name", label = h3("Name of Second Child"), value = "(Optional)"),
-                          textInput("s3Name", label = h3("Name of Third Child"), value = "(Optional)"))
+                          textInput("s3Name", label = h3("Name of Third Child"), value = "(Optional)"),
+                          actionButton("submit", label = "Submit"))
                         )
                       ),
 

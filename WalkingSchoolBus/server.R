@@ -7,12 +7,12 @@
 
 library(shiny)
 
-shinyServer(function(input, output) {
-  output$txtout <- renderText({
-    paste(input$txt, input$slider, format(input$date), sep = ", ")
-  })
-  output$table <- renderTable({
-    head(cars, 4)
+function(input, output, session) {
+  observeEvent(input$submit, {
+    showModal(modalDialog(
+      title = "Thank you for registering for Dat Magic School Bus",
+      "Please navigate to the Route Info Section for more details"
+    ))
   })
 
-})
+}
