@@ -12,9 +12,57 @@ library(readr)
 master = read_csv("~/EduHacks-MeanGirls/Master.csv")
 shortMaster = master[,c("family", "Cluster", "parent", "child1", "child2", "child3")]
 colnames(shortMaster) <- c("Last Name", "Route Number", "Parent Chaperone", "First Child", "Second Child", "Third Child")
-calendarDay = 1:31
+schoolMaster <- master
+parentList1 <- master[master$Cluster ==1,c("family", "parent")]
+parentList2 <- master[master$Cluster ==2,c("family", "parent")]
+parentList3 <- master[master$Cluster ==3,c("family", "parent")]
+table2 <- data.frame(day = integer(31), chaperone = character(31), stringsAsFactors = FALSE)
 
-function(input, output, session) {
+
+function(input, output, session){
+
+  observeEvent(input$cluster2, {
+
+      # if(input$cluster2 == 1){
+      #   for(i in 1:31){
+      #     table2$day[i] <- i
+      #     if(i == 30){
+      #       table2$chaperone[i] <- parentList1[30,'family']
+      #     }
+      #     else{
+      #     table2$chaperone[i] <- parentList1[(i%%30),'family']
+      #     }
+      #   }
+      # }
+      # if(input$cluster2 == 2){
+      #   for(i in 1:31){
+      #     table2$day[i] <- i
+      #     if(i%%9 ==0){
+      #       table2$chaperone[i] <- parentList2[9,'family']
+      #     }
+      #     else{
+      #       table2$chaperone[i] <- parentList2[(i%%9),'family']
+      #     }
+      #   }
+      # }
+      # if(input$cluster2 == 3){
+      #   for(i in 1:31){
+      #     table2$day[i] <- i
+      #     table2$chaperone[i] <- parentList3[1,'family']
+      #   }
+      # }
+    table2 <- matrix(ncol=2, nrow=31)
+    for(i in 1:31){
+      table2[i,1] <- i
+      if(i == 30){
+        table2[i,2] <- as.character(parentList1[30,'family'])
+      }
+      else{
+        table2[i,2] <- as.character(parentList1[(i%%30),'family'])
+      }
+    }
+  })
+
   observeEvent(input$submit, {
     showModal(modalDialog(
       title = "Thank you for registering for Dat Magic School Bus",
@@ -35,7 +83,6 @@ function(input, output, session) {
     registration$child2 <- input$s2Name
     registration$child3 <- input$s3Name
     registration <- as.data.frame(registration)
-    family_list <- new_reg_appender(family_list, registration)
   })
   
   
@@ -72,10 +119,11 @@ function(input, output, session) {
   # Compute the forumla text in a reactive expression since it is 
   # shared by the output$mapPlot ?I think I still need to do this...
 
-  output$table1 <- renderTable(shortMaster)
-  output$table2 <- renderTable(shortMaster) #shortMaster is a placeholder. need to switch out for actual table.
+  output$table1 <- renderTable(master)
   
-  
+  output$table2 <- renderDataTable(table2) 
+
+
 }
 
 

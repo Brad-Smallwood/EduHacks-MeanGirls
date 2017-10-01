@@ -93,18 +93,28 @@ shinyUI(
 
 
                 navbarMenu("Route Info",
-              tabPanel("View Your Route",
-                       uiOutput('mymap')),
               tabPanel("Walking Bus Driver Schedule",
                        h1("Select Your Route and Find Your Day to be Parent Chaperone"),
                        h4("If you don't know your route, you can check the 'Route Number Directory' in the 'Route Info' menu."),
                        h4("You are expected to lead the walking school bus through the planned route on the numbered days of the month that your name is assigned to. If the date your name is next to falls on a weekend or pro-d day, you don't have to lead the walking school bus on that day. Enjoy your day off!"),
-                       tableOutput("table2")
+
+                       numericInput("cluster2", label = h3("Your Route Number"), value = 1),
+                       dataTableOutput("table2")
                        ),
               tabPanel("Route Number Directory",
                        tableOutput("table1"))
              ),
-             tabPanel("How Does It Work?"),
+             tabPanel("How Does It Work?",
+                      img(src = "page1.jpg"),
+                      img(src = "page2.jpg"),
+                      img(src="page3.jpg"),
+                      img(src="page4.png"),
+                      img(src="page5.jpg"),
+                      img(src="page6.jpg"),
+                      img(src="page7.jpg"),
+                      img(src="page8.jpg"),
+                      img(src="page9.jpg")
+                              ),
              tabPanel("Contact Us",
                       h1("Developers"),
                       h3("Kristen Bystrom"),
