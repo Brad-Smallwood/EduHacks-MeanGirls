@@ -9,7 +9,7 @@ library(shiny)
 library(plotGoogleMaps)
 library(plotGoogleMaps)
 library(readr)
-master = read_csv("~/EduHacks-MeanGirls/Master.csv")
+master = read_csv("~/Eduhacks-MeanGirls/WalkingSchoolBus/Master.csv")
 shortMaster = master[,c("family", "Cluster", "parent", "child1", "child2", "child3")]
 colnames(shortMaster) <- c("Last Name", "Route Number", "Parent Chaperone", "First Child", "Second Child", "Third Child")
 schoolMaster <- master

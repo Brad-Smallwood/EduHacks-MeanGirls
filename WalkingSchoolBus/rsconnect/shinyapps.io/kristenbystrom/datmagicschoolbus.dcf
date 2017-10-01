@@ -5,8 +5,8 @@ account: kristenbystrom
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 220730
-bundleId: 1005448
+bundleId: 1005891
 url: https://kristenbystrom.shinyapps.io/datmagicschoolbus/
-when: 1506854929.13008
+when: 1506887417.52716
 asMultiple: FALSE
 asStatic: FALSE
