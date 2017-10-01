@@ -21,9 +21,9 @@ url <- function(address, return.call = "json", sensor = "false") {
 }
 
 # Using google's API
-geoCode <- function(address,verbose=FALSE) {
+geoCode <- function(address, city,verbose=FALSE) {
   if(verbose) cat(address,"\n")
-  u <- paste("https://maps.googleapis.com/maps/api/geocode/json?address=", 1600+Amphitheatre+Parkway,+Mountain+View,+CA,"&key=AIzaSyCN4Z3Y0aArSROT47NXzgdilyOPc2pXiKI")
+  u <- paste("https://maps.googleapis.com/maps/api/geocode/json?address=", gsub(" ", address, replacement = "+"), ",+",city,"&key=AIzaSyCN4Z3Y0aArSROT47NXzgdilyOPc2pXiKI")
   doc <- getURL(u)
   x <- fromJSON(doc,simplify = FALSE)
   if(x$status=="OK") {
@@ -48,17 +48,17 @@ geo_updated <- function(data){
   
   for (i in 1:nrow(data)){
     
-    lattitude[i] <- geoCode(paste((data[i,2]), data[i, 3], sep = ","))[1]
-    longitude[i] <- geoCode(paste((data[i,2]), data[i, 3], sep = ","))[2]
+    lattitude[i] <- geoCode((data[i,3]), data[i, 4])[1]
+    longitude[i] <- geoCode((data[i,3]), data[i, 4])[2]
   }
-<<<<<<< HEAD
+
   data$lattitude <- lattitude
   data$longitude <- longitude
   
   data$lattitude <- parse_double(data$lattitude)
   data$longitude <- parse_double(data$longitude)
   return(data)
-=======
+
   
   family_geo_info <- cbind(data, lattitude, longitude)
   colnames(family_geo_info) <- c("family", "address", "city", "school", "lattitude",
@@ -68,7 +68,6 @@ geo_updated <- function(data){
   family_geo_info$longitude <- parse_double(family_geo_info$longitude)
 
   return(family_geo_info)
->>>>>>> d3f47f5f656565c1494ab1ebdc8bf0c532bec5e6
   
 }
 
