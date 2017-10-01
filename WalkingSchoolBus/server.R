@@ -18,6 +18,17 @@ function(input, output, session) {
       title = "Thank you for registering for Dat Magic School Bus",
       "Please navigate to the Route Info Section for more details"
     ))
+    registration<- NULL
+    registration$X1 <- length(family_list$X1) + 1
+    registration$family <- input$pLastName
+    registration$address <- input$address
+    registration$city <- input$city
+    registration$school <- input$school
+    registration$lattitude <- NA
+    registration$longitude <- NA
+    registration$Cluster <- NA
+    registration$fakeDist <- NA
+    family_list <- new_reg_appender(family_list, registration)
   })
   ######################### CONSTRUCTION ########################
   formulaText <- reactive({
