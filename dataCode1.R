@@ -24,14 +24,35 @@ api <- osmsource_api(url = "http://api.openstreetmap.org/api/0.6/")
 
 box <- corner_bbox(-122.7629, 49.1860, -122.7392, 49.1979)
 
-gschw <- get_osm(box, source = api)
-gschw$nodes
+area_data1 <- get_osm(box, source = api)
+area_data1$nodes
 gschw$relations
 
-str(gschw$nodes)
+str(area_data1$ways)
+str(area_data1$nodes)
+str(area_data1$relations)
 View(gschw$nodes)
 View(gschw$nodes[2])
 View(gschw$nodes[1])
+
+
+
+ts_ids <- find(area_data1, node(tags(v == "traffic_signals")))
+ts <- subset(area_data1, node_ids = ts_ids)
+
+bs_ids <- find(area_data1, node(tags(v %agrep% "busstop")))
+bs <- subset(area_data1, node_ids = bs_ids)
+
+
+hw_ids <- find(area_data1, way(tags(k == "highway")))
+hw <- subset(area_data1, node_ids = hw_ids)
+
+
+plot(area_data1)
+plot_ways(hw, add = TRUE, col = "green")
+plot_nodes(ts, add = TRUE, col = "red")
+plot_nodes(bs, add = TRUE, col = "blue")
+
 
 
 as_igraph(gschw)

@@ -1,0 +1,12 @@
+name: datmagicschoolbus
+title: DatMagicSchoolBus
+username:
+account: kristenbystrom
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 220730
+bundleId: 1005416
+url: https://kristenbystrom.shinyapps.io/datmagicschoolbus/
+when: 1506850207.66341
+asMultiple: FALSE
+asStatic: FALSE

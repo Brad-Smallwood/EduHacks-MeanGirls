@@ -7,12 +7,28 @@
 
 library(shiny)
 
-shinyServer(function(input, output) {
-  output$txtout <- renderText({
-    paste(input$txt, input$slider, format(input$date), sep = ", ")
+function(input, output, session) {
+  observeEvent(input$submit, {
+    showModal(modalDialog(
+      title = "Thank you for registering for Dat Magic School Bus",
+      "Please navigate to the Route Info Section for more details"
+    ))
   })
-  output$table <- renderTable({
-    head(cars, 4)
+  urlKristen <- a("Kristen's LinkedIn", href="https://www.linkedin.com/in/kristen-bystrom-45583aa9/")
+  output$kristen <- renderUI({
+    tagList("Check out ", urlKristen)
+  })
+  urlmatt <- a("Matthew's LinkedIn", href="https://www.linkedin.com/in/matthew-reyers-73713aa7/")
+  output$matt <- renderUI({
+    tagList("Check out ", urlmatt)
+  })
+  urlbrad <- a("Brad's LinkedIn", href="https://www.linkedin.com/in/brad-smallwood/")
+  output$brad <- renderUI({
+    tagList("Check out ", urlbrad)
+  })
+  urlhelen <- a("Helen's LinkedIn", href="https://www.linkedin.com/in/helen-huynh-86199a111/")
+  output$helen <- renderUI({
+    tagList("Check out ", urlhelen)
   })
 
-})
+}
