@@ -42,7 +42,7 @@ geoCode <- function(address,verbose=FALSE) {
 eg_data <- read.csv("Book2.csv", as.is = T, header = T)
 
 # Getting lattitude and longitudinal data
-geo_updated <- function(data, city){
+geo_updated <- function(data){
   
   lattitude <- NULL
   longitude <- NULL
@@ -108,3 +108,45 @@ maplegreen_elementary <- na.omit(maplegreen_elementary)
 write.csv(bothwell_elementary, "bothwell_elementary.csv")
 write.csv(fraserwood_elementary, "fraserwood_elementary.csv")
 write.csv(maplegreen_elementary, "maplegreen_elementary.csv")
+
+colnames(bothwell_elementary)
+fraserwood_elementary
+
+######## New Registrant Function #########
+new_obs <- NULL
+new_obs$X <- 61
+new_obs$family <- "who_cares"
+new_obs$address <- "10340 171A Street"
+new_obs$city <- "Surrey"
+new_obs$school <- "Maple Green Elementary School"
+new_obs <- as.data.frame(new_obs)
+new_obs
+
+maplegreen_elementary
+
+new_reg_appender <- function(newData){
+  
+  newData <- geo_updated(newData)
+  newData$X <- 9999
+  
+  newData <- newData[,c(7, 1, 2, 3, 4, 5, 6)]
+
+  if (newData$school == "Bothwell Elementary School"){
+    
+    bothwell_elementary <- rbind(bothwell_elementary, newData)
+    return(bothwell_elementary)
+  } else if (newData$school == "Fraser Wood Elementary School") {
+    fraserwood_elementary <- rbind(fraserwood_elementary, newData)
+    return(fraserwood_elementary)
+  } else if (newData$school == "Maple Green Elementary School") {
+    maplegreen_elementary <-  rbind(maplegreen_elementary, newData)
+    return(maplegreen_elementary)
+  }
+  
+}
+
+
+
+new_reg_appender(new_obs)
+
+bothwell_elementary
