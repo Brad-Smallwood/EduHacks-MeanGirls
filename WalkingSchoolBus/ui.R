@@ -93,9 +93,16 @@ shinyUI(
 
 
                 navbarMenu("Route Info",
-              tabPanel("View Your Route"),
-              tabPanel("Walking Bus Driver Schedule"),
-              tabPanel("Route Number Directory")
+              tabPanel("View Your Route",
+                       uiOutput('mymap')),
+              tabPanel("Walking Bus Driver Schedule",
+                       h1("Select Your Route and Find Your Day to be Parent Chaperone"),
+                       h4("If you don't know your route, you can check the 'Route Number Directory' in the 'Route Info' menu."),
+                       h4("You are expected to lead the walking school bus through the planned route on the numbered days of the month that your name is assigned to. If the date your name is next to falls on a weekend or pro-d day, you don't have to lead the walking school bus on that day. Enjoy your day off!"),
+                       tableOutput("table2")
+                       ),
+              tabPanel("Route Number Directory",
+                       tableOutput("table1"))
              ),
              tabPanel("How Does It Work?"),
              tabPanel("Contact Us",

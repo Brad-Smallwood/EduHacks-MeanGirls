@@ -6,21 +6,13 @@
 #
 
 library(shiny)
-
 library(plotGoogleMaps)
-
-data(meuse)
-coordinates(meuse)<-~x+y
-proj4string(meuse) <- CRS('+init=epsg:28992')
-
 library(plotGoogleMaps)
 library(readr)
-
-meuse = read_csv("~/GitHub/EduHacks-MeanGirls/Master.csv")
-coordinates(meuse)<-~lattitude+longitude
-meuse # Now a coordinate structure
-proj4string(meuse) <- CRS('+init=epsg:28992')
-
+master = read_csv("~/EduHacks-MeanGirls/Master.csv")
+shortMaster = master[,c("family", "Cluster", "parent", "child1", "child2", "child3")]
+colnames(shortMaster) <- c("Last Name", "Route Number", "Parent Chaperone", "First Child", "Second Child", "Third Child")
+calendarDay = 1:31
 
 function(input, output, session) {
   observeEvent(input$submit, {
@@ -29,7 +21,7 @@ function(input, output, session) {
       "Please navigate to the Route Info Section for more details"
     ))
     registration<- NULL
-    registration$X1 <- length(family_list$X1) + 1
+    registration$X1 <- length(master$X1) + 1
     registration$family <- input$pLastName
     registration$address <- input$address
     registration$city <- input$city
@@ -45,20 +37,20 @@ function(input, output, session) {
     registration <- as.data.frame(registration)
     family_list <- new_reg_appender(family_list, registration)
   })
-  ######################### CONSTRUCTION ########################
-  formulaText <- reactive({
-    #paste the input name in so it follows argument format for plotGoogleMaps?
-    #tried without, don't think it is probelm, works with test code...
-    paste(input$variable)
-  })
   
   
   # Generate a plot of the requested variable against mpg and only 
-  # include outliers if requested
-  output$mapPlot <- renderPlot({
-    plotGoogleMaps(meuse, zcol=formulaText)
-    #also tried to specify alternative arguments like add=TRUE, 
-    #filename='mapPlot.htm', openMap=FALSE
+  output$mymap <- renderUI({
+
+    masterUpdated <- geo_updated(master)
+    coordinates(masterUpdated)<-~lattitude + longitude
+    proj4string(masterUpdated) <- CRS('+init=epsg:28992')
+    m <- plotGoogleMaps(masterUpdated, filename = 'myMap1.html', openMap = F)
+    tags$iframe(
+      srcdoc = paste(readLines('myMap1.html'), collapse = '\n'),
+      width = "100%",
+      height = "600px"
+    )
   })
   ##############################################################
   urlKristen <- a("Kristen's LinkedIn", href="https://www.linkedin.com/in/kristen-bystrom-45583aa9/")
@@ -80,7 +72,10 @@ function(input, output, session) {
   # Compute the forumla text in a reactive expression since it is 
   # shared by the output$mapPlot ?I think I still need to do this...
 
-
+  output$table1 <- renderTable(shortMaster)
+  output$table2 <- renderTable(shortMaster) #shortMaster is a placeholder. need to switch out for actual table.
+  
+  
 }
 
 
