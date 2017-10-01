@@ -5,7 +5,6 @@ library(RJSONIO)
 library(plyr)
 library(class)
 library(stringr)
-library(tidyverse)
 
 url <- function(address, return.call = "json", sensor = "false") {
   root <- "http://maps.google.com/maps/api/geocode/"
@@ -103,10 +102,9 @@ opt_func <- function(df, maxD, maxSize, firstRun){
   
   holder = callAPI(df2[1,7], df2[2,7])
   holder2 = holder[[2]]
-  for(j in 3:nrows(df2)){
-    holder2 = callAPI(holder2, df2[j,7])[[2]]
+  for(i in 3:nrows(df2)){
+    holder2 = callAPI(holder2, df2[i,7])[[2]]
   }
-  
   
   busPath = bestPath(holder2, "Bothwell+Elementary+School+Surrey", "17070+102+Ave+Surrey,BC")
   #Test to see how big df is.  K-mean again if too big
@@ -152,42 +150,36 @@ opt_func2 <- function(df, maxD, firstRun){
       for (i in 1:ncol(df)){
       df[, i] <- gsub(" ", df[,i], replacement = "+") }
       location <- NULL
-      for(j in 1:nrow(df)){
-        location[j] = paste0(df$address[j],"+", df$city[j], "BC")
+      for(i in 1:nrow(df)){
+        location[i] = paste0(df$address,"+", df$city, "BC")
       }} else{
       k = floor(nrow(df)/12)
       # Change data strings to be readable by Matt's functions
       for (i in 1:ncol(df)){
         df[, i] <- gsub(" ", df[,i], replacement = "+") }
       location <- NULL
-      for(j in 1:nrow(df)){
-        location[j] = paste0(df$address[j],"+", df$city[j], ",BC")
+      for(i in 1:nrow(df)){
+        location[i] = paste0(df$address,"+", df$city, "BC")
       }
-      
+      df2 <- cbind(df, location)
       }
-    df2 <- cbind(df, location)
     }
   # Base call to callAPI()
   # Arg1 = first address, Arg2 = second address
   
   testSplit = pathSplit(df2, k)
-  print(names(testSplit))
   busPath = NULL
   
   for (i in 1:length(unique(testSplit$Cluster))){
     
     temp <- testSplit %>% filter(Cluster == i)
-    View(temp)
     if(nrow(temp) <= 1){
       return()  
     }
-    print(temp[1,7], temp[2,7])
     holder = callAPI(temp[1,7], temp[2,7])
-    print(holder)
     holder2 = holder[[2]]
-    print(holder2)
-    for(j in unique(df2$location)){
-      holder2 = callAPI(holder2, unique(df2$location)[j])[[2]]
+    for(j in 3:nrow(df2)){
+      holder2 = callAPI(holder2, df2[j,7])[[2]]
     }
     
     busPath[i] = bestPath(holder2, "Bothwell+Elementary+School+Surrey,BC", "17070 102 Ave")
@@ -195,7 +187,6 @@ opt_func2 <- function(df, maxD, firstRun){
   
   #Test to see how big df is.  K-mean again if too big
   for (i in 1:length(unique(testSplit$Cluster))){
-    print(busPath[i][[1]])
     if(busPath[i][[1]] >= maxD){
       k = k + 1
       testSplit = pathSplit(df, k)
