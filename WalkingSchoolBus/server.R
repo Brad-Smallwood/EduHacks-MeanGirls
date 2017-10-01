@@ -13,6 +13,8 @@ function(input, output, session) {
       title = "Thank you for registering for Dat Magic School Bus",
       "Please navigate to the Route Info Section for more details"
     ))
+    registration <- as.data.frame(c(input$pLastName, input$address, input$city, input$school))
+    family_list <- data_updater(family_list, registration)
   })
   urlKristen <- a("Kristen's LinkedIn", href="https://www.linkedin.com/in/kristen-bystrom-45583aa9/")
   output$kristen <- renderUI({

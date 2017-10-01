@@ -78,6 +78,7 @@ shinyUI(
                           textInput("pFirstName", label = h3("Parent Walker First Name"), value = "Enter text..."),
                           textInput("pLastName", label = h3("Parent Walker Last Name"), value = "Enter text..."),
                           textInput("address", label = h3("Street Address"), value = "eg. 123 Sesame Street"),
+                          textInput("city", label = h3("City"), value = "Enter text..."),
                           selectInput("school", label = h3("School"), choices = c("Bothwell Elementary School", "Fraser Wood Elementary School", "Maple Green Elementary School"),
                                       selected = NULL)
                         ),
