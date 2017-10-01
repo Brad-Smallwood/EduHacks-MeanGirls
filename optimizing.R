@@ -69,12 +69,6 @@ updated_eg_data <- geo_updated(eg_data)
 
 updated_eg_data$province <- "B.C"
 
-# Updating dataset based on new information
-data_updater <- function(dataset, new_info){
-  family_geo_info <- rbind(dataset, new_info)
-  return(family_geo_info)
-}
-
 # Filtering by city function
 filter_1 <- function(school_name, ds){
   

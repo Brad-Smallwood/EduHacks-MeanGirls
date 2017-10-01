@@ -9,6 +9,7 @@ library(jsonlite)
 library(Rfast)
 library(TSP)
 library(gtools)
+
 x <- matrix(NA, 10, 10)
 x[sample(1:100, 10)] <- rpois(10, 3)
 x
