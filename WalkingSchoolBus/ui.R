@@ -110,6 +110,6 @@ shinyUI(
                       h2("Barinder Thind"),
                       h4("bthind@sfu.ca"),
                       h2("Helen Huynh"),
-                      h2("helen@placeholder.com"),
+                      h4("helen@placeholder.com"),
                       h4(uiOutput("helen")))
 ))
