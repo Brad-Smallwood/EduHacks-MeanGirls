@@ -6,14 +6,13 @@
 #
 
 library(shiny)
-<<<<<<< HEAD
+
 library(plotGoogleMaps)
 
 data(meuse)
 coordinates(meuse)<-~x+y
 proj4string(meuse) <- CRS('+init=epsg:28992')
-=======
-<<<<<<< HEAD
+
 library(plotGoogleMaps)
 library(readr)
 
@@ -21,9 +20,7 @@ meuse = read_csv("~/GitHub/EduHacks-MeanGirls/Master.csv")
 coordinates(meuse)<-~lattitude+longitude
 meuse # Now a coordinate structure
 proj4string(meuse) <- CRS('+init=epsg:28992')
-=======
->>>>>>> d3f47f5f656565c1494ab1ebdc8bf0c532bec5e6
->>>>>>> 0d1bb050155a37c5cc127ada171fa499d7c591f2
+
 
 function(input, output, session) {
   observeEvent(input$submit, {
@@ -41,6 +38,11 @@ function(input, output, session) {
     registration$longitude <- NA
     registration$Cluster <- NA
     registration$fakeDist <- NA
+    registration$parent <- input$pFirstName
+    registration$child1 <- input$s1Name
+    registration$child2 <- input$s2Name
+    registration$child3 <- input$s3Name
+    registration <- as.data.frame(registration)
     family_list <- new_reg_appender(family_list, registration)
   })
   ######################### CONSTRUCTION ########################

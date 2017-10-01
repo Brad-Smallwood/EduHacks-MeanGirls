@@ -11,11 +11,10 @@ library(RCurl)
 library(RJSONIO)
 library(tidyverse)
 
-<<<<<<< HEAD
-=======
+
 # Reading in data set
 eg_data <- read_csv("~/EduHacks-MeanGirls/Master.csv")
->>>>>>> 0d1bb050155a37c5cc127ada171fa499d7c591f2
+
 
 # Address Function
 url <- function(address, return.call = "json", sensor = "false") {
@@ -41,20 +40,18 @@ geoCode <- function(address, city,verbose=FALSE) {
   }
 }
 
-<<<<<<< HEAD
+
 # Reading in data set
 eg_data <- read_csv("~/EduHacks-MeanGirls/Master.csv")
 
-=======
->>>>>>> 0d1bb050155a37c5cc127ada171fa499d7c591f2
+
 # Getting lattitude and longitudinal data
 geo_updated <- function(data){
   lattitude <- NULL
   longitude <- NULL
   
   for (i in 1:nrow(data)){
-    
-<<<<<<< HEAD
+  
     lattitude[i] <- geoCode(paste((data[i,3]), data[i, 4], sep = ","))[1]
     longitude[i] <- geoCode(paste((data[i,3]), data[i, 4], sep = ","))[2]
   }
@@ -65,7 +62,6 @@ geo_updated <- function(data){
   data$lattitude <- parse_double(data$lattitude)
   data$longitude <- parse_double(data$longitude)
 
-=======
     lattitude[i] <- geoCode((data[i,3]), data[i, 4])[1]
     longitude[i] <- geoCode((data[i,3]), data[i, 4])[2]
   }
@@ -75,7 +71,6 @@ geo_updated <- function(data){
   
   data$lattitude <- parse_double(data$lattitude)
   data$longitude <- parse_double(data$longitude)
->>>>>>> 0d1bb050155a37c5cc127ada171fa499d7c591f2
   return(data)
   
 }
@@ -83,14 +78,7 @@ geo_updated <- function(data){
 # Running lattitude/longitude function
 updated_eg_data <- geo_updated(eg_data)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-updated_eg_data$province <- "B.C"
 
-=======
->>>>>>> ff835f641eb26ed393d4efc1280324ea2dc757ae
-=======
->>>>>>> 0d1bb050155a37c5cc127ada171fa499d7c591f2
 # Filtering by city function
 filter_1 <- function(school_name, ds){
   
@@ -129,10 +117,7 @@ colnames(bothwell_elementary)
 fraserwood_elementary
 
 ######## New Registrant Function #########
-<<<<<<< HEAD
-=======
 
->>>>>>> 0d1bb050155a37c5cc127ada171fa499d7c591f2
 registration<- NULL
 registration$X1 <- 61 #length(family_list$X1) + 1
 registration$family <- "Buckle" #input$pLastName
@@ -143,15 +128,9 @@ registration$lattitude <- NA
 registration$longitude <- NA
 registration$Cluster <- NA
 registration$fakeDist <- NA
-<<<<<<< HEAD
-registration$parent <- Janet
-registration$child1 <- Jimbob
-registration$child2 <- Stacey
-=======
 registration$parent <- "Janet"
 registration$child1 <- "Jimbob"
 registration$child2 <- "Stacey"
->>>>>>> 0d1bb050155a37c5cc127ada171fa499d7c591f2
 registration$child3 <- NA
 registration <- as.data.frame(registration)
 
@@ -162,8 +141,3 @@ new_reg_appender <- function(newData){
 
 new_reg_appender(registration)
 
-<<<<<<< HEAD
-updated_eg_data
-=======
-new_reg_appender(registration)
->>>>>>> 0d1bb050155a37c5cc127ada171fa499d7c591f2
