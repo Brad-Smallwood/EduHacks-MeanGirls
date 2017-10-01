@@ -17,10 +17,10 @@ shinyUI(
                       titlePanel(h1("Real Fake News")),
                                
                      tabsetPanel(
-                       tabPanel(h6("Obesity: Not an Issue Anymore!"), 
+                       tabPanel(h5("Obesity: Not an Issue Anymore!"), 
                                 fluidRow(
-                                  column(3,img(src='pvalue.jpg')),
-                                  column(9,
+                                  column(4,img(src='pvalue.jpg')),
+                                  column(8,
                                          h1("Obesity: Not an Issue Anymore!"),
                                          h3("Over the past decade, the obesity rates amongst children in Canada have shot up at an alarming rate. In fact, in 2007 the average weight of a 4th grade student was 95 pounds whereas now, that number is 174! Many top-tier statisticians have followed this trend and attributed this to a lack of walking. In fact, Dr. Alternative (a top researcher at Stanford) has said that his hypothesis tests have proven, without a doubt, that the entirety of this epidemic is a result of parents sending their children to school by busses. "),
                                          h3('Now, you might ask, “But, there were busses in 2007 as well, what’s different now?"'),
@@ -33,7 +33,7 @@ shinyUI(
                                   
                                   )
                                 ),
-                       tabPanel(h6("BC Government Partners with Dat School Bus"), 
+                       tabPanel(h5("BC Government Partners with Dat School Bus"), 
                                 fluidRow(
                                   column(5,img(src='johnHorgan.jpg')),
                                   column(7,
@@ -48,7 +48,7 @@ shinyUI(
                                                 h3("Suspendisse nibh dolor, aliquam vitae mauris nec, facilisis egestas urna. Nunc lorem tellus, laoreet sit amet vehicula in, porttitor faucibus tellus. Donec varius et lorem feugiat dignissim. Fusce vulputate neque id tellus lobortis, scelerisque ultrices mi facilisis. Fusce tempor tincidunt massa ut dignissim.")
                                 ))
                        ),
-                       tabPanel(h6("Dat School Bus Now Implemented in 10 School Districts"), 
+                       tabPanel(h5("Dat School Bus Now Implemented in 10 School Districts"), 
                                 fluidRow(
                                   column(5,img(src='schoolBusSign.jpg')),
                                   column(7,
