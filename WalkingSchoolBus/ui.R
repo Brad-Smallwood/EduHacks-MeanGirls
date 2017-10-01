@@ -14,7 +14,7 @@ shinyUI(
              inverse = TRUE, collapsible = TRUE,
              fluid = TRUE, theme = NULL, windowTitle = "The Magic School Bus", 
              tabPanel("Home",
-                      titlePanel(h1("News")),
+                      titlePanel(h1("Real Fake News")),
                                
                      tabsetPanel(
                        tabPanel(h6("Dat School Bus Decreases Obesity Rates in Local Surrey School"), 
