@@ -49,8 +49,8 @@ geo_updated <- function(data, city){
   
   for (i in 1:nrow(data)){
     
-    lattitude[i] <- geoCode(paste((data[i,2]), data[i, 3], sep = ", "))[1]
-    longitude[i] <- geoCode(paste((data[i,2]), data[i, 3], sep = ", "))[2]
+    lattitude[i] <- geoCode(paste((data[i,2]), data[i, 3], sep = ","))[1]
+    longitude[i] <- geoCode(paste((data[i,2]), data[i, 3], sep = ","))[2]
   }
   
   family_geo_info <- cbind(data, lattitude, longitude)
@@ -59,7 +59,7 @@ geo_updated <- function(data, city){
   
   family_geo_info$lattitude <- parse_double(family_geo_info$lattitude)
   family_geo_info$longitude <- parse_double(family_geo_info$longitude)
-  
+
   return(family_geo_info)
   
 }
@@ -100,3 +100,11 @@ for (i in 1:length(unique(updated_eg_data$school))){
 bothwell_elementary <- read.csv("family_geo_Bothwell Elementary School .csv", as.is = T, header = T)
 fraserwood_elementary <- read.csv("family_geo_Fraser Wood Elementary School .csv", as.is = T, header = T)
 maplegreen_elementary <- read.csv("family_geo_Maple Green Elementary School .csv", as.is = T, header = T)
+
+bothwell_elementary <- na.omit(bothwell_elementary)
+fraserwood_elementary <- na.omit(fraserwood_elementary)
+maplegreen_elementary <- na.omit(maplegreen_elementary)
+
+write.csv(bothwell_elementary, "bothwell_elementary.csv")
+write.csv(fraserwood_elementary, "fraserwood_elementary.csv")
+write.csv(maplegreen_elementary, "maplegreen_elementary.csv")
