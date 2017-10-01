@@ -151,7 +151,7 @@ opt_func2 <- function(df, maxD, firstRun){
       df[, i] <- gsub(" ", df[,i], replacement = "+") }
       location <- NULL
       for(i in 1:nrow(df)){
-        location[i] = paste0(df$address,"+", df$city, "BC")
+        location[i] = paste0(df$address,"+", df$city, ",BC")
       }} else{
       k = floor(nrow(df)/12)
       # Change data strings to be readable by Matt's functions
@@ -159,7 +159,7 @@ opt_func2 <- function(df, maxD, firstRun){
         df[, i] <- gsub(" ", df[,i], replacement = "+") }
       location <- NULL
       for(i in 1:nrow(df)){
-        location[i] = paste0(df$address,"+", df$city, "BC")
+        location[i] = paste0(df$address,"+", df$city, ",BC")
       }
       df2 <- cbind(df, location)
       }
@@ -200,6 +200,9 @@ opt_func2 <- function(df, maxD, firstRun){
 
 opt_func2(bothwell_elementary, 1500, TRUE)
 
+debugonce(opt_func2)
 
 
 nrow(bothwell_elementary)
+
+bothwell_elementary$address
