@@ -11,6 +11,7 @@ library(RCurl)
 library(RJSONIO)
 library(tidyverse)
 
+# Writing function which gets lattitude and longitude information:
 
 # Address Function
 url <- function(address, return.call = "json", sensor = "false") {
@@ -38,7 +39,7 @@ geoCode <- function(address,verbose=FALSE) {
 }
 
 # Reading in data set
-eg_data <- read_csv("~/EduHacks-MeanGirls/Master.csv")
+eg_data <- read.csv("Book2.csv", as.is = T, header = T)
 
 # Getting lattitude and longitudinal data
 geo_updated <- function(data){
@@ -47,20 +48,34 @@ geo_updated <- function(data){
   
   for (i in 1:nrow(data)){
     
-    lattitude[i] <- geoCode(paste((data[i,3]), data[i, 4], sep = ","))[1]
-    longitude[i] <- geoCode(paste((data[i,3]), data[i, 4], sep = ","))[2]
+    lattitude[i] <- geoCode(paste((data[i,2]), data[i, 3], sep = ","))[1]
+    longitude[i] <- geoCode(paste((data[i,2]), data[i, 3], sep = ","))[2]
   }
+<<<<<<< HEAD
   data$lattitude <- lattitude
   data$longitude <- longitude
   
   data$lattitude <- parse_double(data$lattitude)
   data$longitude <- parse_double(data$longitude)
   return(data)
+=======
+  
+  family_geo_info <- cbind(data, lattitude, longitude)
+  colnames(family_geo_info) <- c("family", "address", "city", "school", "lattitude",
+                                 "longitude")
+  
+  family_geo_info$lattitude <- parse_double(family_geo_info$lattitude)
+  family_geo_info$longitude <- parse_double(family_geo_info$longitude)
+
+  return(family_geo_info)
+>>>>>>> d3f47f5f656565c1494ab1ebdc8bf0c532bec5e6
   
 }
 
 # Running lattitude/longitude function
 updated_eg_data <- geo_updated(eg_data)
+
+updated_eg_data$province <- "B.C"
 
 # Filtering by city function
 filter_1 <- function(school_name, ds){
@@ -100,6 +115,7 @@ colnames(bothwell_elementary)
 fraserwood_elementary
 
 ######## New Registrant Function #########
+<<<<<<< HEAD
 registration<- NULL
 registration$X1 <- 61 #length(family_list$X1) + 1
 registration$family <- "Buckle" #input$pLastName
@@ -115,12 +131,42 @@ registration$child1 <- "Jimbob"
 registration$child2 <- "Stacey"
 registration$child3 <- NA
 registration <- as.data.frame(registration)
+=======
+new_obs <- NULL
+new_obs$X <- 61
+new_obs$family <- "who_cares"
+new_obs$address <- "10340 171A Street"
+new_obs$city <- "Surrey"
+new_obs$school <- "Maple Green Elementary School"
+new_obs <- as.data.frame(new_obs)
+new_obs
+
+maplegreen_elementary
+>>>>>>> d3f47f5f656565c1494ab1ebdc8bf0c532bec5e6
 
 new_reg_appender <- function(newData){
+  
   newData <- geo_updated(newData)
-  updated_eg_data <- rbind(updated_eg_data, newData)
+  newData$X <- 9999
+  
+  newData <- newData[,c(7, 1, 2, 3, 4, 5, 6)]
+
+  if (newData$school == "Bothwell Elementary School"){
+    
+    bothwell_elementary <- rbind(bothwell_elementary, newData)
+    return(bothwell_elementary)
+  } else if (newData$school == "Fraser Wood Elementary School") {
+    fraserwood_elementary <- rbind(fraserwood_elementary, newData)
+    return(fraserwood_elementary)
+  } else if (newData$school == "Maple Green Elementary School") {
+    maplegreen_elementary <-  rbind(maplegreen_elementary, newData)
+    return(maplegreen_elementary)
+  }
+  
 }
 
-new_reg_appender(registration)
 
-updated_eg_data
+
+new_reg_appender(new_obs)
+
+bothwell_elementary
