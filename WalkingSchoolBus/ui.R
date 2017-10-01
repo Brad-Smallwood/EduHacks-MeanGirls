@@ -7,6 +7,7 @@
 
 library(shiny)
 
+
 shinyUI(
 
   navbarPage(title = "Dat Magic School Bus", id = "main",
@@ -67,14 +68,18 @@ shinyUI(
                               )
                        ),
              tabPanel("About",
-                      titlePanel(h1("What is Dat Magic School Bus All About?"))),
+                      titlePanel(h1("What is Dat Magic School Bus All About?")),
+                      h3("Dat Magic School Bus is a web application to facilitate students walking together to school in an safe, organized, and optimally short route facilitated by parents who take turns chaperoning the walking shool bus. To learn more about the program, head the the About page in the navigation bar.")
+                      ),
              tabPanel("Register",
                       titlePanel(h1("Join Dat Magic School Bus")),
                       fluidRow(
                         column(6, 
                           textInput("pFirstName", label = h3("Parent Walker First Name"), value = "Enter text..."),
                           textInput("pLastName", label = h3("Parent Walker Last Name"), value = "Enter text..."),
-                          textInput("address", label = h3("Street Address"), value = "eg. 123 Sesame Street")
+                          textInput("address", label = h3("Street Address"), value = "eg. 123 Sesame Street"),
+                          selectInput("school", label = h3("School"), choices = c("Bothwell Elementary School", "Fraser Wood Elementary School", "Maple Green Elementary School"),
+                                      selected = NULL)
                         ),
                         column(6, 
                           textInput("s1Name", label = h3("Name of First Child"), value = "Enter your child's name"),
@@ -91,5 +96,20 @@ shinyUI(
               tabPanel("Walking Bus Driver Schedule"),
               tabPanel("Route Number Directory")
              ),
-             tabPanel("Contact Us"))
-)
+             tabPanel("Contact Us",
+                      h1("Developers"),
+                      h2("Kristen Bystrom"),
+                      h4("ksbystrom@gmail.com"),
+                      h4(uiOutput("kristen")),
+                      h2("Matthew Reyers"),
+                      h4("matthewreyers3333@gmail.com"),
+                      h4(uiOutput("matt")),
+                      h2("Brad Smallwood"),
+                      h4("brad_smallwood@hotmail.com"),
+                      h4(uiOutput("brad")),
+                      h2("Barinder Thind"),
+                      h4("bthind@sfu.ca"),
+                      h2("Helen Huynh"),
+                      h2("helen@placeholder.com"),
+                      h4(uiOutput("helen")))
+))

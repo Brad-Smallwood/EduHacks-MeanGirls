@@ -14,5 +14,21 @@ function(input, output, session) {
       "Please navigate to the Route Info Section for more details"
     ))
   })
+  urlKristen <- a("Kristen's LinkedIn", href="https://www.linkedin.com/in/kristen-bystrom-45583aa9/")
+  output$kristen <- renderUI({
+    tagList("Check out ", urlKristen)
+  })
+  urlmatt <- a("Matthew's LinkedIn", href="https://www.linkedin.com/in/matthew-reyers-73713aa7/")
+  output$matt <- renderUI({
+    tagList("Check out ", urlmatt)
+  })
+  urlbrad <- a("Brad's LinkedIn", href="https://www.linkedin.com/in/brad-smallwood/")
+  output$brad <- renderUI({
+    tagList("Check out ", urlbrad)
+  })
+  urlhelen <- a("Helen's LinkedIn", href="https://www.linkedin.com/in/helen-huynh-86199a111/")
+  output$helen <- renderUI({
+    tagList("Check out ", urlhelen)
+  })
 
 }
