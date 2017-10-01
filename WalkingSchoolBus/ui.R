@@ -34,19 +34,19 @@ shinyUI(
                                   
                                   )
                                 ),
-                       tabPanel(h5("BC Government Partners with Dat School Bus"), 
+                       tabPanel(h5("The BC Government: In Bed with the Human Bus!"), 
                                 fluidRow(
-                                  column(5,img(src='johnHorgan.jpg')),
-                                  column(7,
-                                         h1("Dat School Bus Decreases Obesity Rates in Local Surrey School"),
-                                         h3("Some news article about John Horgan"),
-                                         h3("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consequat dapibus bibendum. Praesent fermentum sem sed odio aliquam, in blandit erat imperdiet. Morbi pellentesque sed ligula in eleifend. Cras eu congue eros. Duis sodales fermentum enim non tincidunt. Donec porta metus augue, vehicula commodo nunc vulputate at. Vivamus pellentesque urna ipsum, eu eleifend eros finibus ac.")
-                                  )
+                                  column(4,img(src='johnHorgan.jpg')),
+                                  column(8,
+                                         h1("The BC Government: In Bed with the Human Bus!"),
+                                         h3("It is a well-known fact that the government is corrupt but, is corruption always a bad thing? This moral conundrum is something that we need to deal with now more than ever. News has just leaked (from an anonymous source although, many suspect the Russians) that the BC government has colluded with the start-up “Dat Magic School Bus”. We mentioned this start-up in an earlier article and commended them for their outstanding and innovative contributions to the world of medicine and public health. However, it seems that they have taken on a kind of vigilante role… and are working alongside the government!")
+                                        )
                                 ),
                                 fluidRow(column(11, offset = 1,
-                                                h3("Sed varius, nunc et condimentum varius, augue tellus ullamcorper dolor, et maximus dui dolor at lorem. Quisque pulvinar vitae nunc nec interdum. Aliquam in neque ac leo ullamcorper hendrerit. Mauris at enim viverra, volutpat metus ut, efficitur tellus. Nulla viverra justo tempus leo aliquam blandit. Nulla sed dictum risus, vitae eleifend nibh. Nullam imperdiet commodo orci, non placerat lectus dignissim sed. Mauris gravida orci quis dolor pellentesque fringilla ac sit amet eros. Nullam ac accumsan mi. Sed laoreet lectus et sem porttitor, non viverra erat porta. Mauris a lectus eget metus semper mattis vitae in diam."),
-                                                h3("Proin vehicula metus purus, id eleifend tortor varius at. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed tempor, quam a vestibulum luctus, massa nisi varius lectus, eget placerat metus lectus sed felis. Aliquam quis ornare diam, non iaculis massa. Duis vitae metus at magna fringilla lacinia. Fusce ut varius orci. Donec sem sem, egestas sed gravida et, eleifend eu dui. Nam at fringilla ipsum, ut consequat diam. Donec interdum in quam sit amet maximus. Integer urna turpis, sagittis at tristique at, pellentesque varius neque. Nam eros ex, ornare et viverra id, auctor ac nulla. Fusce at laoreet velit, eu porta metus. Nunc suscipit auctor diam, sed ultricies metus. Maecenas suscipit facilisis felis, ac tincidunt turpis congue eget. Quisque porttitor est id luctus mattis. In ante lorem, facilisis maximus tortor sit amet, aliquam feugiat orci."),
-                                                h3("Suspendisse nibh dolor, aliquam vitae mauris nec, facilisis egestas urna. Nunc lorem tellus, laoreet sit amet vehicula in, porttitor faucibus tellus. Donec varius et lorem feugiat dignissim. Fusce vulputate neque id tellus lobortis, scelerisque ultrices mi facilisis. Fusce tempor tincidunt massa ut dignissim.")
+                                                h3("The government was so impressed with “Dat Magic School Bus” that they decided to allocate 95% of their budget to the company and have – apparently – pledged to run a deficit for three decades to make sure that the students making up “Dat Magic School Bus” are treated like royalty."),
+                                                h3("“These kids are our future, they are revolutionaries and they must be given all the tools they need so that they can perform optimally and continue to maximize the potential of ALL of our futures. It is unfortunate that this information was leaked but I stand by these decisions. As an elected official, it is my sworn duty to do what is best for everyone and I believe this is the path to lead us there”"),
+                                                h3("These comments by Winston Churchill following the leak left a crowd of observers in shock. In interviews following this news, they seemed to agree with this course of action and one person even said, “I think that those kids are definitely the future and their ‘human bus’ is a stroke of brilliance that seldom occurs even across generations”. Another observer predicted that the impact of the “human bus” will be comparable to what Einstein did for general relativity."),
+                                                h3('Whatever the case may be, I think it is safe to say that in times like these, a little bit of rebellion has always been helpful – whether it be from the people OR the government.')
                                 ))
                        ),
                        tabPanel(h5("Dat School Bus Now Implemented in 10 School Districts"), 
@@ -69,7 +69,7 @@ shinyUI(
                        ),
              tabPanel("About",
                       titlePanel(h1("What is Dat Magic School Bus All About?")),
-                      h3("Dat Magic School Bus is a web application to facilitate students walking together to school in an safe, organized, and optimally short route facilitated by parents who take turns chaperoning the walking shool bus. To learn more about the program, head the the About page in the navigation bar.")
+                      h4("Dat Magic School Bus is a web application to facilitate students walking together to school in an safe, organized, and optimally short route facilitated by parents who take turns chaperoning the walking shool bus. To learn more about the program, head the the About page in the navigation bar.")
                       ),
              tabPanel("Register",
                       titlePanel(h1("Join Dat Magic School Bus")),
@@ -96,20 +96,21 @@ shinyUI(
               tabPanel("Walking Bus Driver Schedule"),
               tabPanel("Route Number Directory")
              ),
+             tabPanel("How Does It Work?"),
              tabPanel("Contact Us",
                       h1("Developers"),
-                      h2("Kristen Bystrom"),
-                      h4("ksbystrom@gmail.com"),
-                      h4(uiOutput("kristen")),
-                      h2("Matthew Reyers"),
-                      h4("matthewreyers3333@gmail.com"),
-                      h4(uiOutput("matt")),
-                      h2("Brad Smallwood"),
-                      h4("brad_smallwood@hotmail.com"),
-                      h4(uiOutput("brad")),
-                      h2("Barinder Thind"),
-                      h4("bthind@sfu.ca"),
-                      h2("Helen Huynh"),
-                      h4("helen@placeholder.com"),
-                      h4(uiOutput("helen")))
+                      h3("Kristen Bystrom"),
+                      h5("ksbystrom@gmail.com"),
+                      h5(uiOutput("kristen")),
+                      h3("Matthew Reyers"),
+                      h5("matthewreyers3333@gmail.com"),
+                      h5(uiOutput("matt")),
+                      h3("Brad Smallwood"),
+                      h5("brad_smallwood@hotmail.com"),
+                      h5(uiOutput("brad")),
+                      h3("Barinder Thind"),
+                      h5("bthind@sfu.ca"),
+                      h3("Helen Huynh"),
+                      h5("helen@placeholder.com"),
+                      h5(uiOutput("helen")))
 ))
