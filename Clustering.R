@@ -96,35 +96,45 @@ distanceCalc(df){
 # First need to set up format that callAPI likes.  Remove spaces, change to +.
 # Next select first two rows. Then loop through and keep adding to the path more.
 #
-#
+#"Maple+Green+Elementary+Surrey,BC"  "8619+150+street+Surrey,BC"
 
-opt_func <- function(df, maxD, maxSize){
+opt_func <- function(df, maxD, maxSize, firstRun){
   # Initialize
-  k = 1
-  
-  # Change data strings to be readable by Matt's functions
-  df <- gsub(" ", df, replacement = "+")
-  df <- 
-  
+  if(firstRun = TRUE){
+    k = 1
+    # Change data strings to be readable by Matt's functions
+    df <- gsub(" ", df, replacement = "+")
+    location <- vector(mode = "chr", length = nrow(df))
+    df2 = cbind(df, location)
+    for(i in 1:nrow(df2)){
+      location[i] = paste0(df2$address,"+", df2$city, "+", ",BC")
+    }
+  }
   # Base call to callAPI()
   # Arg1 = first address, Arg2 = second address
-  holder = callAPI(, )
   
+  holder = callAPI(df2[1,7], df2[2,7])
+  holder2 = holder[[2]]
+  for(i in 3:nrows(df2)){
+    holder2 = callAPI(holder2, df2[i,7])[[2]]
+  }
+  
+  busPath = bestPath(holder2, "Bothwell+Elementary+School+Surrey", "17070+102+Ave+Surrey,BC")
   #Test to see how big df is.  K-mean again if too big
   if(nrow(df) >= maxSize){
     k = k + 1
     testSplit = pathSplit(df, k)
-    opt_func(testSplit, maxD, maxSize)
+    opt_func(testSplit, maxD, maxSize, FALSE)
   }else{ # Not too big.  Split based off of number of clusters
     for(i in 1:length(unique(pathSplit.out$Cluster))){
-      temp <- df %>% filter(Cluster == i)
-      l <- distanceCalc(temp)
+      temp <- df2 %>% filter(Cluster == i)
+      l <- bestPath(temp)[[1]]
       if (l <= maxD){ # If distance is less than max then finish.  Return df with clusters
         return(temp)
       }else{
         k = k + 1
         temp2 <- pathSplit(temp, k)
-        opt_func(temp2, maxD)
+        opt_func(temp2, maxD, maxSize, FALSE)
       }
     }
   }
@@ -136,3 +146,5 @@ fakeData = pathSplit.out
 fakeDist = runif(60, 1, 3000)
 fakeData = cbind(fakeData, fakeDist)
 View(fakeData)
+
+write.csv(fakeData, "fakeData.csv")
