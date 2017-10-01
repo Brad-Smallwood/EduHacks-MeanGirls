@@ -48,7 +48,7 @@ geo_updated <- function(data){
     lattitude[i] <- geoCode((data[i,3]), data[i, 4])[1]
     longitude[i] <- geoCode((data[i,3]), data[i, 4])[2]
   }
-
+  
   data$lattitude <- lattitude
   data$longitude <- longitude
   
