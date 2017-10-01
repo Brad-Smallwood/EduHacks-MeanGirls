@@ -40,7 +40,7 @@ shinyUI(
                           textInput("address", label = h3("Street Address"), value = "eg. 123 Sesame Street")
                         ),
                         column(6, 
-                          textInput("s1Name", label = h3("Name of First Child"), value = "Enter you child's name"),
+                          textInput("s1Name", label = h3("Name of First Child"), value = "Enter your child's name"),
                           textInput("s2Name", label = h3("Name of Second Child"), value = "(Optional)"),
                           textInput("s3Name", label = h3("Name of Third Child"), value = "(Optional)"))
                         )
