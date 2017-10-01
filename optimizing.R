@@ -38,7 +38,7 @@ geoCode <- function(address,verbose=FALSE) {
 }
 
 # Reading in data set
-eg_data <- read_csv("~/EduHacks-MeanGirls/fakeData.csv")
+eg_data <- read_csv("~/EduHacks-MeanGirls/Master.csv")
 
 # Getting lattitude and longitudinal data
 geo_updated <- function(data){
@@ -113,7 +113,11 @@ registration$lattitude <- NA
 registration$longitude <- NA
 registration$Cluster <- NA
 registration$fakeDist <- NA
-registration
+registration$parent <- Janet
+registration$child1 <- Jimbob
+registration$child2 <- Stacey
+registration$child3 <- NA
+registration <- as.data.frame(registration)
 
 new_reg_appender <- function(newData){
   newData <- geo_updated(newData)
