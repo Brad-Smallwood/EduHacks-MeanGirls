@@ -118,37 +118,11 @@ registration$child2 <- "Stacey"
 registration$child3 <- NA
 registration <- as.data.frame(registration)
 
-new_obs <- NULL
-new_obs$X <- 61
-new_obs$family <- "who_cares"
-new_obs$address <- "10340 171A Street"
-new_obs$city <- "Surrey"
-new_obs$school <- "Maple Green Elementary School"
-new_obs <- as.data.frame(new_obs)
-new_obs
-
-
-
 new_reg_appender <- function(newData){
   
   newData <- geo_updated(newData)
-  newData$X <- 9999
-  
-  newData <- newData[,c(7, 1, 2, 3, 4, 5, 6)]
-
-  if (newData$school == "Bothwell Elementary School"){
-    
-    bothwell_elementary <- rbind(bothwell_elementary, newData)
-    return(bothwell_elementary)
-  } else if (newData$school == "Fraser Wood Elementary School") {
-    fraserwood_elementary <- rbind(fraserwood_elementary, newData)
-    return(fraserwood_elementary)
-  } else if (newData$school == "Maple Green Elementary School") {
-    maplegreen_elementary <-  rbind(maplegreen_elementary, newData)
-    return(maplegreen_elementary)
-  }
-  
+  updated_eg_data <- rbind(updated_eg_data, newData)
 }
 
 
-new_reg_appender(new_obs)
+new_reg_appender(registration)
