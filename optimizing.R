@@ -22,7 +22,7 @@ url <- function(address, return.call = "json", sensor = "false") {
 # Using google's API
 geoCode <- function(address,verbose=FALSE) {
   if(verbose) cat(address,"\n")
-  u <- url(address)
+  u <- paste("https://maps.googleapis.com/maps/api/geocode/json?address=", 1600+Amphitheatre+Parkway,+Mountain+View,+CA,"&key=AIzaSyCN4Z3Y0aArSROT47NXzgdilyOPc2pXiKI")
   doc <- getURL(u)
   x <- fromJSON(doc,simplify = FALSE)
   if(x$status=="OK") {
@@ -42,7 +42,6 @@ eg_data <- read_csv("~/EduHacks-MeanGirls/Master.csv")
 
 # Getting lattitude and longitudinal data
 geo_updated <- function(data){
-  
   lattitude <- NULL
   longitude <- NULL
   
@@ -51,13 +50,11 @@ geo_updated <- function(data){
     lattitude[i] <- geoCode(paste((data[i,3]), data[i, 4], sep = ","))[1]
     longitude[i] <- geoCode(paste((data[i,3]), data[i, 4], sep = ","))[2]
   }
-  
   data$lattitude <- lattitude
   data$longitude <- longitude
   
   data$lattitude <- parse_double(data$lattitude)
   data$longitude <- parse_double(data$longitude)
-
   return(data)
   
 }
@@ -113,9 +110,9 @@ registration$lattitude <- NA
 registration$longitude <- NA
 registration$Cluster <- NA
 registration$fakeDist <- NA
-registration$parent <- Janet
-registration$child1 <- Jimbob
-registration$child2 <- Stacey
+registration$parent <- "Janet"
+registration$child1 <- "Jimbob"
+registration$child2 <- "Stacey"
 registration$child3 <- NA
 registration <- as.data.frame(registration)
 
